@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/deama3
-    username: root
-    password: 1121
+    url: jdbc:mysql://localhost:3306/${URL}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: ${USERNAME}
+    password: ${PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,5 +13,5 @@ spring:
         format_sql: true
 
 jwt:
-  secret: 7J2067KI7ZSE66Gc7KCd7Yq47JeQ7ISc7YWM7Iqk7Yq47L2U65Oc7J6Y7Kec66m07KKL6rKg64uk7ZWY7KeA66eM7Ja066C164uk
-  access_exp: 36000
+  secret: ${SECRET}
+  access_exp: ${ACCESS_EXP}
