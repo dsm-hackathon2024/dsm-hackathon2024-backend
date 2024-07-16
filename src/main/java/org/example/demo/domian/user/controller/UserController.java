@@ -49,6 +49,6 @@ public class UserController {
         return userMyPagesService.userMyPagesService(userId);
     }
 
-    @PostMapping(value = "/profile", consumes = {"multipart/form-data"})
+    @PatchMapping(value = "/profile", consumes = {"multipart/form-data"})
     public void profile(@RequestPart(value = "image", required = false) MultipartFile file) {uploadProfileService.execute(file);  }
 }
