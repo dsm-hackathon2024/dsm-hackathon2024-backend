@@ -9,11 +9,13 @@ public class UserMyPagesResponse {
     int count;
     String id;
     String userId;
+    String profile;
 
     @Builder
-    public UserMyPagesResponse(int count, String id, String userId) {
+    public UserMyPagesResponse(int count, String id, String userId, String profile) {
         this.count = count;
         this.id = id;
         this.userId = userId;
+        this.profile = profile;
     }
 }
