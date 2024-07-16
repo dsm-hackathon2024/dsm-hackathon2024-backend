@@ -4,18 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.example.demo.domian.user.dto.request.SigninRequest;
 import org.example.demo.domian.user.dto.request.SignupRequest;
 import org.example.demo.domian.user.dto.response.TokenResponse;
+import org.example.demo.domian.user.dto.response.UserMyPagesResponse;
 import org.example.demo.domian.user.dto.response.UserRankList;
 import org.example.demo.domian.user.repository.UserRepository;
 import org.example.demo.domian.user.service.QueryUserRankService;
 import org.example.demo.domian.user.service.UserLoginService;
+import org.example.demo.domian.user.service.UserMyPagesService;
 import org.example.demo.domian.user.service.UserSignupService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -26,6 +23,8 @@ public class UserController {
     private final UserLoginService userLoginService;
     private final UserSignupService userSignupService;
     private final QueryUserRankService queryUserRankService;
+    private final UserMyPagesService userMyPagesService;
+
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
@@ -40,4 +39,9 @@ public class UserController {
 
     @GetMapping("/rank")
     public UserRankList rank() { return queryUserRankService.execute(); }
+
+    @GetMapping("/mypages/{userId}")
+    public UserMyPagesResponse myPages(@PathVariable String userId){
+        return userMyPagesService.userMyPagesService(userId);
+    }
 }
