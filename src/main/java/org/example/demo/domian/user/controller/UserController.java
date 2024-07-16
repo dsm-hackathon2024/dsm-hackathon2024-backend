@@ -4,9 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.example.demo.domian.user.dto.request.SigninRequest;
 import org.example.demo.domian.user.dto.request.SignupRequest;
 import org.example.demo.domian.user.dto.response.TokenResponse;
+import org.example.demo.domian.user.dto.response.UserRankList;
+import org.example.demo.domian.user.repository.UserRepository;
+import org.example.demo.domian.user.service.QueryUserRankService;
 import org.example.demo.domian.user.service.UserLoginService;
 import org.example.demo.domian.user.service.UserSignupService;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +25,7 @@ import javax.validation.Valid;
 public class UserController {
     private final UserLoginService userLoginService;
     private final UserSignupService userSignupService;
+    private final QueryUserRankService queryUserRankService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
@@ -32,4 +37,7 @@ public class UserController {
     public TokenResponse login(@RequestBody @Valid SigninRequest request){
         return userLoginService.execute(request);
     }
+
+    @GetMapping("/rank")
+    public UserRankList rank() { return queryUserRankService.execute(); }
 }
