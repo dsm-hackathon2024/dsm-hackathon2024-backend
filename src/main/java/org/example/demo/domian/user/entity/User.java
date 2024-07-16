@@ -15,7 +15,7 @@ public class User {
     private String id;
 
     @Column(nullable = false, length = 20)
-    private String nickname;
+    private String username;
 
     @Column(nullable = false, length = 60)
     private String password;
