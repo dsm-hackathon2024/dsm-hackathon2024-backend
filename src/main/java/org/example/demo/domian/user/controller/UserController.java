@@ -11,6 +11,7 @@ import org.example.demo.domian.user.service.QueryUserRankService;
 import org.example.demo.domian.user.service.UploadProfileService;
 import org.example.demo.domian.user.service.UserLoginService;
 import org.example.demo.domian.user.service.UserMyPagesService;
+import org.example.demo.domian.user.service.UserScoreService;
 import org.example.demo.domian.user.service.UserSignupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class UserController {
     private final QueryUserRankService queryUserRankService;
     private final UserMyPagesService userMyPagesService;
     private final UploadProfileService uploadProfileService;
+    private final UserScoreService userScoreService;
 
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -50,5 +52,8 @@ public class UserController {
     }
 
     @PatchMapping(value = "/profile", consumes = {"multipart/form-data"})
-    public void profile(@RequestPart(value = "image", required = false) MultipartFile file) {uploadProfileService.execute(file);  }
+    public void profile(@RequestPart(value = "image", required = false) MultipartFile file) { uploadProfileService.execute(file);  }
+
+    @PostMapping("/correct")
+    public void scoreCount() { userScoreService.scoreCountService(); }
 }

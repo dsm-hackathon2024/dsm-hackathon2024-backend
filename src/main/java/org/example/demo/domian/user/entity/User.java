@@ -42,4 +42,8 @@ public class User {
         this.profile =file;
         return this.profile;
     }
+
+    public void scoreCount() {
+        this.score += 1;
+    }
 }
