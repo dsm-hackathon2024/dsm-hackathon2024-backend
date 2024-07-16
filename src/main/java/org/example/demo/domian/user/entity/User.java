@@ -1,11 +1,16 @@
 package org.example.demo.domian.user.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AccessLevel;
+
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class User {
@@ -20,4 +25,10 @@ public class User {
     @Column(nullable = false, length = 60)
     private String password;
 
+    @Builder
+    public User(String id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
 }
