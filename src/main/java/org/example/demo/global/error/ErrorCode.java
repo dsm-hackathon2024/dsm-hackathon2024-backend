@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {
+    IMAGE_BAE_REQUEST(400, "Image Bad Request"),
 
     EXPIRED_JWT(401, "Expired Jwt"),
     SIGNATURE_JWT(401, "Signature Jwt"),
