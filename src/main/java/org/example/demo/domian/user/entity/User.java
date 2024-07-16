@@ -25,6 +25,9 @@ public class User {
     @Column(nullable = false, length = 60)
     private String password;
 
+    @Column(nullable = false)
+    private int score = 0;
+
     @Builder
     public User(String id, String username, String password) {
         this.id = id;
