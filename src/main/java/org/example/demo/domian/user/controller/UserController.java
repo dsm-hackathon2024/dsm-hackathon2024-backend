@@ -8,11 +8,13 @@ import org.example.demo.domian.user.dto.response.UserMyPagesResponse;
 import org.example.demo.domian.user.dto.response.UserRankList;
 import org.example.demo.domian.user.repository.UserRepository;
 import org.example.demo.domian.user.service.QueryUserRankService;
+import org.example.demo.domian.user.service.UploadProfileService;
 import org.example.demo.domian.user.service.UserLoginService;
 import org.example.demo.domian.user.service.UserMyPagesService;
 import org.example.demo.domian.user.service.UserSignupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -24,6 +26,7 @@ public class UserController {
     private final UserSignupService userSignupService;
     private final QueryUserRankService queryUserRankService;
     private final UserMyPagesService userMyPagesService;
+    private final UploadProfileService uploadProfileService;
 
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -44,4 +47,7 @@ public class UserController {
     public UserMyPagesResponse myPages(@PathVariable String userId){
         return userMyPagesService.userMyPagesService(userId);
     }
+
+    @PostMapping(value = "/profile", consumes = {"multipart/form-data"})
+    public void profile(@RequestPart(value = "image", required = false) MultipartFile file) {uploadProfileService.execute(file);  }
 }

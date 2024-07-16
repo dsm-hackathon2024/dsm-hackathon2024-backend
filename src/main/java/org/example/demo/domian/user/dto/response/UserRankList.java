@@ -16,10 +16,12 @@ public class UserRankList {
     public static class UserRank {
         private final String username;
         private final int score;
+        private final String profile;
 
-        public UserRank(String username, int score) {
+        public UserRank(String username, int score, String profile) {
             this.username = username;
             this.score = score;
+            this.profile = profile;
         }
     }
 }

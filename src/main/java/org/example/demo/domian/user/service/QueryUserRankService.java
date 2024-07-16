@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.demo.domian.user.dto.response.UserRankList;
 import org.example.demo.domian.user.entity.User;
 import org.example.demo.domian.user.repository.UserRepository;
+import org.example.demo.global.aws.S3Util;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.util.List;
 @Service
 public class QueryUserRankService {
     private final UserRepository userRepository;
+    private final S3Util s3Util;
 
     @Transactional(readOnly = true)
     public UserRankList execute() {
@@ -23,6 +25,7 @@ public class QueryUserRankService {
                 .map(it -> UserRankList.UserRank.builder()
                         .username(it.getUsername())
                         .score(it.getScore())
+                        .profile(s3Util.getProfileImageUrl(it.getProfile()))
                         .build()).toList();
 
         return UserRankList.builder()

@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,10 +29,17 @@ public class User {
     @Column(nullable = false)
     private int score = 0;
 
+    private String profile;
+
     @Builder
     public User(String id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
+    }
+
+    public String profile(String file) {
+        this.profile =file;
+        return this.profile;
     }
 }
