@@ -37,7 +37,6 @@ public class UserController {
     @PostMapping("/signup")
     public TokenResponse signup(@RequestBody @Valid SignupRequest request) { return userSignupService.execute(request); }
 
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signin")
     public TokenResponse login(@RequestBody @Valid SigninRequest request){
@@ -59,9 +58,7 @@ public class UserController {
     public void UserMyPagesUpdate(@RequestBody UserMyPagesUpdateRequest request) {
         userMypagesUpdateService.UpdateMyPages(request);
     }
-
-    public void profile(@RequestPart(value = "image", required = false) MultipartFile file) { uploadProfileService.execute(file);  }
-
+    
     @PostMapping("/correct")
     public void scoreCount() { userScoreService.scoreCountService(); }
 }
