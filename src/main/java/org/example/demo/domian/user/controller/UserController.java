@@ -12,6 +12,7 @@ import org.example.demo.domian.user.service.QueryUserRankService;
 import org.example.demo.domian.user.service.UploadProfileService;
 import org.example.demo.domian.user.service.UserLoginService;
 import org.example.demo.domian.user.service.UserMyPagesService;
+import org.example.demo.domian.user.service.UserScoreService;
 import org.example.demo.domian.user.service.UserSignupService;
 import org.example.demo.domian.user.service.*;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,7 @@ public class UserController {
     private final UserMyPagesService userMyPagesService;
     private final UploadProfileService uploadProfileService;
     private final UserMypagesUpdateService userMypagesUpdateService;
+    private final UserScoreService userScoreService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
@@ -45,10 +47,9 @@ public class UserController {
     @GetMapping("/rank")
     public UserRankList rank() { return queryUserRankService.execute(); }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("/mypages/{userId}")
-    public UserMyPagesResponse myPages(@PathVariable String userId){
-        return userMyPagesService.userMyPagesService(userId);
+    @GetMapping("/mypages")
+    public UserMyPagesResponse myPages(){
+        return userMyPagesService.userMyPagesService();
     }
 
     @PatchMapping(value = "/profile", consumes = {"multipart/form-data"})
@@ -59,4 +60,8 @@ public class UserController {
         userMypagesUpdateService.UpdateMyPages(request);
     }
 
+    public void profile(@RequestPart(value = "image", required = false) MultipartFile file) { uploadProfileService.execute(file);  }
+
+    @PostMapping("/correct")
+    public void scoreCount() { userScoreService.scoreCountService(); }
 }

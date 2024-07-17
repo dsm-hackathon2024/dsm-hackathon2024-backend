@@ -45,4 +45,8 @@ public class User {
         this.username = username;
 
     }
+
+    public void scoreCount() {
+        this.score += 1;
+    }
 }
