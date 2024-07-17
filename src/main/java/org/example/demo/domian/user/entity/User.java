@@ -37,9 +37,12 @@ public class User {
         this.username = username;
         this.password = password;
     }
-
     public String profile(String file) {
-        this.profile =file;
+        this.profile = file;
         return this.profile;
+    }
+    public void updateUsername(String username ){
+        this.username = username;
+
     }
 }

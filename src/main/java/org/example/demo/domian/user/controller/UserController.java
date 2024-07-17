@@ -3,6 +3,7 @@ package org.example.demo.domian.user.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.demo.domian.user.dto.request.SigninRequest;
 import org.example.demo.domian.user.dto.request.SignupRequest;
+import org.example.demo.domian.user.dto.request.UserMyPagesUpdateRequest;
 import org.example.demo.domian.user.dto.response.TokenResponse;
 import org.example.demo.domian.user.dto.response.UserMyPagesResponse;
 import org.example.demo.domian.user.dto.response.UserRankList;
@@ -12,6 +13,7 @@ import org.example.demo.domian.user.service.UploadProfileService;
 import org.example.demo.domian.user.service.UserLoginService;
 import org.example.demo.domian.user.service.UserMyPagesService;
 import org.example.demo.domian.user.service.UserSignupService;
+import org.example.demo.domian.user.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +29,7 @@ public class UserController {
     private final QueryUserRankService queryUserRankService;
     private final UserMyPagesService userMyPagesService;
     private final UploadProfileService uploadProfileService;
-
+    private final UserMypagesUpdateService userMypagesUpdateService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
@@ -51,4 +53,10 @@ public class UserController {
 
     @PatchMapping(value = "/profile", consumes = {"multipart/form-data"})
     public void profile(@RequestPart(value = "image", required = false) MultipartFile file) {uploadProfileService.execute(file);  }
+
+    @PatchMapping("/mypages/update")
+    public void UserMyPagesUpdate(@RequestBody UserMyPagesUpdateRequest request) {
+        userMypagesUpdateService.UpdateMyPages(request);
+    }
+
 }
