@@ -58,7 +58,7 @@ public class UserController {
     public void UserMyPagesUpdate(@RequestBody UserMyPagesUpdateRequest request) {
         userMypagesUpdateService.UpdateMyPages(request);
     }
-    
-    @PostMapping("/correct")
-    public void scoreCount() { userScoreService.scoreCountService(); }
+
+    @PostMapping("/correct/{level}")
+    public void scoreCount(@PathVariable int level) { userScoreService.scoreCountService(level); }
 }

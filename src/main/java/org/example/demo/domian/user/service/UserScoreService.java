@@ -12,8 +12,8 @@ public class UserScoreService {
     private final UserFacade userFacade;
 
     @Transactional
-    public void scoreCountService() {
+    public void scoreCountService(int level) {
         User user = userFacade.getCurrentUser();
-        user.scoreCount();
+        user.scoreCount(level);
     }
 }

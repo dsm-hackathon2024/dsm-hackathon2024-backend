@@ -46,7 +46,7 @@ public class User {
 
     }
 
-    public void scoreCount() {
-        this.score += 1;
+    public void scoreCount(int level) {
+        this.score += level;
     }
 }
