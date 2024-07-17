@@ -45,10 +45,9 @@ public class UserController {
     @GetMapping("/rank")
     public UserRankList rank() { return queryUserRankService.execute(); }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("/mypages/{userId}")
-    public UserMyPagesResponse myPages(@PathVariable String userId){
-        return userMyPagesService.userMyPagesService(userId);
+    @GetMapping("/mypages")
+    public UserMyPagesResponse myPages(){
+        return userMyPagesService.userMyPagesService();
     }
 
     @PatchMapping(value = "/profile", consumes = {"multipart/form-data"})
