@@ -51,10 +51,10 @@ public class UserController {
         return userMyPagesService.userMyPagesService();
     }
 
-    @PatchMapping(value = "/profile", consumes = {"multipart/form-data"})
+    @PutMapping(value = "/profile", consumes = {"multipart/form-data"})
     public void profile(@RequestPart(value = "image", required = false) MultipartFile file) {uploadProfileService.execute(file);  }
 
-    @PatchMapping("/mypages/update")
+    @PutMapping("/mypages/update")
     public void UserMyPagesUpdate(@RequestBody UserMyPagesUpdateRequest request) {
         userMypagesUpdateService.UpdateMyPages(request);
     }
